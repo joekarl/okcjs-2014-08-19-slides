@@ -1,16 +1,18 @@
 var http = require('http');
+var Agent = require('agentkeepalive');
 
-var maxSocketsAgent = new http.Agent({
-    maxSockets: 50
+var keepaliveAgent = new Agent({
+  maxSockets: 100,
+  maxFreeSockets: 5,
+  keepAliveTimeout: 30000 // free socket keepalive for 30 seconds
 });
 
-var numberOfRequesters = 50,
+var numberOfRequesters = 150,
     i;
 
 for (i = 0; i < numberOfRequesters; ++i) {
     startRequester();
 }
-
 
 var counter = 0;
 var lastCountTime = Date.now();
@@ -21,7 +23,7 @@ function startRequester() {
         var req = http.request({
                 host: "127.0.0.1",
                 port: 8080,
-                agent: maxSocketsAgent
+                agent: keepaliveAgent
             }, function(res){
             res.on('data', function() { /* do nothing */ });
             res.on('end', function(){

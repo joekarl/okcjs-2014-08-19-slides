@@ -114,30 +114,121 @@ name: inverse
 layout: true
 class: center, middle, inverse
 ---
-#Deploying Node.js applications with PM2
+#Making (lots of) HTTP requests with Nodejs
 ##Karl Kirch @joekarl
 
 ---
 layout: false
 class: center, middle
-
+##HTTP (1.1)
+###HyperText Transfer Protocol
 
 ---
-#In practice you need both
+class: center, middle
+##HTTP
+<h3>HyperText Transfer <span style="color: red">Protocol</span></h3>
 
+---
+class: center, middle
+#Protocol over what?
+
+---
+class: center, middle
+#TCP (socket) Connection
+
+---
+###HTTP Request overview
+* Every HTTP request requires a TCP connection
+* Those socket connections can be reused
+    * Server has to be told to keep the socket connection open (HTTP keep-alive)
+* After TCP connection is established HTTP headers and body are sent
+* Server responds with response headers and body
+
+---
+class: center, middle
+##HTTP - Telnet Demo
+<!--
+run server.js
+open telnet to localhost 8080
+`
+GET / HTTP/1.1
+Host: localhost
+
+
+`
+-->
+
+---
+class: center, middle
+##HTTP - Server Demo
+<!--
+run server.js
+run default_req.js
+up to 2 requesters
+up to 4 requesters
+up to 8 requesters
+see node agent behaviour kicking int
+-->
+
+---
+class: center, middle
+##Whats happening?
+
+---
+class: center, middle
+##Only 5 connections open at any one time!!
+###(http://nodejs.org/api/http.html#http_class_http_agent)
+
+---
+class: center, middle
+##HTTP - Max Sockets Demo
+<!--
+run server.js
+run max_sock_req.js
+see better throughput
+-->
+
+---
+class: center, middle
+##WHY U NO HTTP KEEP ALIVE!?!?!?
+![](yuno.jpg)
+
+---
+class: center, middle
+##Using HTTP Keep-Alive
+
+---
+class: center, middle
+##HTTP - Keep Alive Agent Demo
+<!--
+run server.js
+run keep_alive_agent_req.js
+see better throughput
+-->
+
+---
+##Use Cases
+* HTTP Proxy
+* Calling micro-services
+* Calling third party services
+* Load Testing
+
+---
+##Things to remember
+* HTTP relies on TCP connections
+* Establishing TCP connections takes time
+* Keep-Alive has it's purpose, don't abuse it!
+* These aren't Node specific, applicable for any language
 
 
     </textarea>
     <script src="remark-0.6.5.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-    var hljs = remark.highlighter.engine;
-    </script>
-    <!--<script src="js/remark.language.js" type="text/javascript"></script>-->
-    <script type="text/javascript">
-    var slideshow = remark.create({
-        highlightStyle: 'monokai',
-        highlightLanguage: 'remark'
-    });
+        var hljs = remark.highlighter.engine;
+        var slideshow = remark.create({
+            highlightStyle: 'monokai',
+            highlightLanguage: 'remark'
+        });
     </script>
   </body>
 </html>

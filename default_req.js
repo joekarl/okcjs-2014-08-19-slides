@@ -15,7 +15,7 @@ function startRequester() {
     function doRequest() {
         http.get({
                 host: "127.0.0.1",
-                port: 1337
+                port: 8080
             }, function(res){
             res.on('data', function() { /* do nothing */ });
             res.on('end', function(){
