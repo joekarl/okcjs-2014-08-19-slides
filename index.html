@@ -125,7 +125,7 @@ class: center, middle
 
 ---
 class: center, middle
-##HTTP
+##HTTP (1.1)
 <h3>HyperText Transfer <span style="color: red">Protocol</span></h3>
 
 ---
@@ -137,12 +137,24 @@ class: center, middle
 #TCP (socket) Connection
 
 ---
-###HTTP Request overview
+###HTTP Request
 * Every HTTP request requires a TCP connection
+
 * Those socket connections can be reused
-    * Server has to be told to keep the socket connection open (HTTP keep-alive)
-* After TCP connection is established HTTP headers and body are sent
+
+* After a TCP connection is established HTTP headers and body are sent
+
 * Server responds with response headers and body
+
+---
+class: center, middle
+##HTTP (1.1) Headers
+<h3>GET <span style="color: red">`path`</span> HTTP/1.1</h3>
+<h3>Host: <span style="color: red">`hostname`</span></h3>
+
+<h4>ex.</h4>
+<h3>GET /users/25/photos/2 HTTP/1.1</h3>
+<h3>Host: localhost</h3>
 
 ---
 class: center, middle
@@ -159,8 +171,12 @@ Host: localhost
 -->
 
 ---
+class: center, middle, inverse
+##Sending HTTP Requests with Node
+
+---
 class: center, middle
-##HTTP - Server Demo
+##HTTP - Defaults Demo
 <!--
 run server.js
 run default_req.js
@@ -198,7 +214,7 @@ class: center, middle
 ![](yuno.jpg)
 
 ---
-class: center, middle
+class: center, middle, inverse
 ##Using HTTP Keep-Alive
 
 ---
@@ -216,13 +232,6 @@ see better throughput
 * Calling micro-services
 * Calling third party services
 * Load Testing
-
----
-##Things to remember
-* HTTP relies on TCP connections
-* Establishing TCP connections takes time
-* Keep-Alive has it's purpose, don't abuse it!
-* These aren't Node specific, applicable for any language
 
     </textarea>
     <script src="remark-0.6.5.min.js" type="text/javascript"></script>
