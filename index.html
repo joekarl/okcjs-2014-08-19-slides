@@ -196,8 +196,9 @@ class: center, middle
 
 ---
 class: center, middle
-##NodeJs Global Agent
-###(http://nodejs.org/api/http.html#http_class_http_agent)
+##NodeJs Agent
+###Handles how TCP connections are managed
+####(http://nodejs.org/api/http.html#http_class_http_agent)
 
 ---
 class: center, middle
@@ -209,13 +210,24 @@ see better throughput
 -->
 
 ---
+class: center, middle, inverse
+##Can we do better?
+
+---
 class: center, middle
-##WHY U NO HTTP KEEP ALIVE!?!?!?
+##Using HTTP Keep-Alive
+###Always attempt to reuse the socket after a connection
+
+---
+class: center, middle
+##NODE, WHY U NO HTTP KEEP ALIVE!?!?!?
 ![](yuno.jpg)
 
 ---
-class: center, middle, inverse
-##Using HTTP Keep-Alive
+##Keep Alive Agents
+* https://www.npmjs.org/package/keep-alive-agent
+* https://www.npmjs.org/package/forever-agent
+* https://www.npmjs.org/package/agentkeepalive
 
 ---
 class: center, middle

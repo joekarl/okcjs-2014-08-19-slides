@@ -1,10 +1,10 @@
 var http = require('http');
 
 var maxSocketsAgent = new http.Agent({
-    maxSockets: 50
+    maxSockets: 10
 });
 
-var numberOfRequesters = 50,
+var numberOfRequesters = 10,
     i;
 
 for (i = 0; i < numberOfRequesters; ++i) {
